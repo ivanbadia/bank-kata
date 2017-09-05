@@ -2,7 +2,7 @@ package com.codurance.bankkata;
 
 public class Account {
     public void deposit(int amount) {
-        throw new UnsupportedOperationException();
+        throw new IllegalArgumentException("The amount must not be greater than 0");
     }
 
     public void withdraw(int amount) {

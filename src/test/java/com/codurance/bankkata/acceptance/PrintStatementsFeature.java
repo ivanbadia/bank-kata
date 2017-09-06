@@ -1,11 +1,9 @@
 package com.codurance.bankkata.acceptance;
 
-import com.codurance.bankkata.Account;
-import com.codurance.bankkata.Clock;
-import com.codurance.bankkata.Console;
+import com.codurance.bankkata.*;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -23,8 +21,12 @@ public class PrintStatementsFeature {
     @Mock
     private Console console;
 
-    @InjectMocks
     private Account account;
+
+    @Before
+    public void setUp() throws Exception {
+        account = new Account(new InMemoryTransactionRepository(), clock, new StatementPrinter());
+    }
 
     @Test
     public void print_statement_contains_all_transactions_in_descending_order(){

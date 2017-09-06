@@ -5,6 +5,6 @@ import java.time.LocalDate;
 public class Clock {
 
     public LocalDate today() {
-        throw new UnsupportedOperationException();
+        return LocalDate.now();
     }
 }

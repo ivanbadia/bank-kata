@@ -1,4 +1,5 @@
-import com.codurance.bankkata.*;
+package com.codurance.bankkata;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

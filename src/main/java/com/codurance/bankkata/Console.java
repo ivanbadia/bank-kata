@@ -1,7 +1,7 @@
 package com.codurance.bankkata;
 
 public class Console {
-    public void println(String line) {
+    public void printLine(String line) {
         throw new UnsupportedOperationException();
     }
 }

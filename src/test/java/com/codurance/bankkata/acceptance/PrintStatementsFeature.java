@@ -25,7 +25,7 @@ public class PrintStatementsFeature {
 
     @Before
     public void setUp() throws Exception {
-        account = new Account(new InMemoryTransactionRepository(), clock, new StatementPrinter());
+        account = new Account(new InMemoryTransactionRepository(), clock, new StatementPrinter(console));
     }
 
     @Test
@@ -39,9 +39,9 @@ public class PrintStatementsFeature {
 
         account.printStatement();
 
-        verify(console).println("DATE | AMOUNT | BALANCE");
-        verify(console).println("10/04/2014 | 500.00  | 1400.00");
-        verify(console).println("02/04/2014 | -100.00 | 900.00");
-        verify(console).println("01/04/2014 | 1000.00 | 1000.00");
+        verify(console).printLine("DATE | AMOUNT | BALANCE");
+        verify(console).printLine("10/04/2014 | 500.00  | 1400.00");
+        verify(console).printLine("02/04/2014 | -100.00 | 900.00");
+        verify(console).printLine("01/04/2014 | 1000.00 | 1000.00");
     }
 }

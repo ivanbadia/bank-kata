@@ -52,5 +52,15 @@ public class AccountShould {
         verify(transactionRepository).add(new Transaction(TODAY, POSITIVE_AMOUNT));
     }
 
+    @Test
+    public void validate_that_the_withdraw_amount_is_positive(){
+
+        Throwable throwable = catchThrowable(() -> account.withdraw(NEGATIVE_AMOUNT));
+
+        assertThat(throwable)
+                .isNotNull()
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

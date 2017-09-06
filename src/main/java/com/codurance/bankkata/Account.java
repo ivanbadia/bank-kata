@@ -23,7 +23,7 @@ public class Account {
     }
 
     public void withdraw(int amount) {
-        throw new UnsupportedOperationException();
+        validateAmount(amount);
     }
 
     public void printStatement() {

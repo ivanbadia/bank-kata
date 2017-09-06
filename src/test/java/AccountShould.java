@@ -6,12 +6,14 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 
 public class AccountShould {
 
+    public static final int NEGATIVE_AMOUNT = -100;
+
     @Test
-    public void validate_the_deposit_amount_is_not_positive(){
+    public void validate_the_deposit_amount_is_positive(){
 
         Account account = new Account();
 
-        Throwable throwable = catchThrowable(() -> account.deposit(-100));
+        Throwable throwable = catchThrowable(() -> account.deposit(NEGATIVE_AMOUNT));
 
         assertThat(throwable)
                 .isNotNull()

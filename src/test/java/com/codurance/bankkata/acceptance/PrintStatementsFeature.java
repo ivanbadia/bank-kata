@@ -27,7 +27,7 @@ public class PrintStatementsFeature {
     private Account account;
 
     @Test
-    public void print_statements(){
+    public void print_statement_contains_all_transactions_in_descending_order(){
         given(clock.localDate()).willReturn(LocalDate.of(2014, 4, 1));
         given(clock.localDate()).willReturn(LocalDate.of(2014, 4, 2));
         given(clock.localDate()).willReturn(LocalDate.of(2014, 4, 10));

@@ -17,14 +17,14 @@ public class Account {
     public void deposit(int amount) {
         validateAmount(amount);
 
-        transactionRepository.add(new Transaction(clock.today(), amount));
+        transactionRepository.add(transaction(amount));
     }
 
 
     public void withdraw(int amount) {
         validateAmount(amount);
 
-        transactionRepository.add(new Transaction(clock.today(), -amount));
+        transactionRepository.add(transaction(-amount));
     }
 
     public void printStatement() {
@@ -36,5 +36,9 @@ public class Account {
         if(amount<=0) {
             throw new IllegalArgumentException("The amount must be greater than 0");
         }
+    }
+
+    private Transaction transaction(int amount) {
+        return new Transaction(clock.today(), amount);
     }
 }

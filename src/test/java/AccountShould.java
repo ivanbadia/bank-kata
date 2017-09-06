@@ -2,6 +2,7 @@ import com.codurance.bankkata.Account;
 import com.codurance.bankkata.Clock;
 import com.codurance.bankkata.Transaction;
 import com.codurance.bankkata.TransactionRepository;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -32,6 +33,11 @@ public class AccountShould {
     private Account account;
 
 
+    @Before
+    public void setUp() throws Exception {
+        given(clock.today()).willReturn(TODAY);
+    }
+
     @Test
     public void validate_that_the_deposit_amount_is_positive(){
 
@@ -44,8 +50,6 @@ public class AccountShould {
 
     @Test
     public void deposit_amount_into_the_account(){
-
-        given(clock.today()).willReturn(TODAY);
 
         account.deposit(POSITIVE_AMOUNT);
 
@@ -62,5 +66,11 @@ public class AccountShould {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    public void withdraw_amount_from_the_account(){
 
+        account.withdraw(POSITIVE_AMOUNT);
+
+        verify(transactionRepository).add(new Transaction(TODAY, NEGATIVE_AMOUNT));
+    }
 }

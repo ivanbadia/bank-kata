@@ -24,6 +24,8 @@ public class Account {
 
     public void withdraw(int amount) {
         validateAmount(amount);
+
+        transactionRepository.add(new Transaction(clock.today(), -amount));
     }
 
     public void printStatement() {

@@ -34,7 +34,7 @@ public class Account {
 
     private void validateAmount(int amount) {
         if(amount<=0) {
-            throw new IllegalArgumentException("The amount must not be greater than 0");
+            throw new IllegalArgumentException("The amount must be greater than 0");
         }
     }
 }

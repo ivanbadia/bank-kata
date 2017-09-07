@@ -6,7 +6,7 @@ import java.util.List;
 import static java.util.Collections.unmodifiableList;
 
 public class InMemoryTransactionRepository implements TransactionRepository {
-    private List<Transaction> transactions = new ArrayList<>();
+    private final List<Transaction> transactions = new ArrayList<>();
 
     @Override
     public void add(Transaction transaction) {

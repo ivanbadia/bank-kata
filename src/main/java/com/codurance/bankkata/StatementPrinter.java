@@ -32,13 +32,13 @@ public class StatementPrinter {
     private void printTransactions(List<Transaction> transactions) {
         final AtomicInteger balance = new AtomicInteger(0);
         transactions.stream()
-                .map(line(balance))
+                .map(transactionToLine(balance))
                 .collect(toCollection(LinkedList::new))
                 .descendingIterator()
                 .forEachRemaining(this::printLine);
     }
 
-    private Function<Transaction, String> line(AtomicInteger balance) {
+    private Function<Transaction, String> transactionToLine(AtomicInteger balance) {
         return transaction -> format("{0} | {1} | {2}", formatDate(transaction.date()), formatNumber(transaction.amount()), formatNumber(balance.addAndGet(transaction.amount())));
     }
 

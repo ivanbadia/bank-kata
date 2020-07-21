@@ -2,11 +2,12 @@ package com.codurance.bankkata;
 
 import java.util.List;
 
-public class Account {
+public class Account implements InterfaceAccount{
 
     private TransactionRepository transactionRepository;
     private Clock clock;
     private StatementPrinter statementPrinter;
+    
 
     public Account(TransactionRepository transactionRepository, Clock clock, StatementPrinter statementPrinter) {
         this.transactionRepository = transactionRepository;
@@ -14,26 +15,21 @@ public class Account {
         this.statementPrinter = statementPrinter;
     }
 
+    @Override
     public void deposit(int amount) {
-        validateAmount(amount);
+        ValidAmount.validateAmount(amount);
         transactionRepository.add(transaction(amount));
     }
 
-
+    @Override
     public void withdraw(int amount) {
-        validateAmount(amount);
+        ValidAmount.validateAmount(amount);
         transactionRepository.add(transaction(-amount));
     }
 
     public void printStatement() {
         List<Transaction> transactions = transactionRepository.all();
         statementPrinter.print(transactions);
-    }
-
-    private void validateAmount(int amount) {
-        if(amount<=0) {
-            throw new IllegalArgumentException("The amount must be greater than 0");
-        }
     }
 
     private Transaction transaction(int amount) {

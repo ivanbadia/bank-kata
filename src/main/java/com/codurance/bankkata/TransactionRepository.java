@@ -3,7 +3,7 @@ package com.codurance.bankkata;
 import java.util.List;
 
 public interface TransactionRepository {
-    void add(Transaction transaction);
+    public void add(Transaction transaction);
 
-    List<Transaction> all();
+    public List<Transaction> all();
 }
